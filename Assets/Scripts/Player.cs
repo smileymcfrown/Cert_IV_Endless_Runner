@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     public float jumpPower = 5;
     public Rigidbody2D rb;
     public Transform playerFeet;
-    public float playerFeetRadius;
     public LayerMask groundLayer;
     public HUD hud;
-    public int distance = 0;
+    [HideInInspector]
+    public float distance = 0f;
 
+    private float moveSpeed = 2f;  // Does this need to be a float or int?
+    private float playerFeetRadius = 0.1f;
     private int score = 0;
     private int bonus = 0;
     private bool isGrounded = true;
@@ -28,9 +30,15 @@ public class Player : MonoBehaviour
         return score;
     }
 
+    // Put moveSpeed in Player Script to have one variable for all scripts.
+    public float GetSpeed()
+    {
+        return moveSpeed;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-       Obstacle obstacle = other.gameObject.GetComponent<Obstacle>();
+       // Obstacle obstacle = other.gameObject.GetComponent<Obstacle>();
         
         // Debug.Log(other.gameObject.name);
         
@@ -41,11 +49,11 @@ public class Player : MonoBehaviour
             hud.EndGame(true);
             Time.timeScale = 0;
         }
-        else 
+        else if (other.gameObject.name == "Doctor(Clone)")
         {
-            bonus = bonus + 1000;
+            bonus += 1000;
+            moveSpeed += 0.5f;
             Debug.Log("1000 points!");
-            // obstacle.moveSpeed = obstacle.moveSpeed + 10;
             
         }
     }
@@ -70,11 +78,18 @@ public class Player : MonoBehaviour
             }*/
 
         }
+
+        // Moved distance variable from FixedUpdate and used deltaTime to make it frame rate independent.
+        distance += moveSpeed * Time.deltaTime;
+        Debug.Log(distance);
+
+        // Using RoundToInt to convert float distance to an Int and set score divisor from 50 to 10 as distance
+        // travelled is slower in seconds than frame rate.
+        score = bonus + Mathf.RoundToInt(distance / 10);
     }
 
     private void FixedUpdate()
     {
-        distance++;
-        score = bonus + distance / 50;
+
     }
 }

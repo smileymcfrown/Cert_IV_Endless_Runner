@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BackgroundSpawner : MonoBehaviour
 {
-    public float minSpawnRate = 1f;
-    public float maxSpawnRate = 2f;
+    public float minSpawnRate = 2f;
+    public float maxSpawnRate = 4f;
     public float spawnModifier = 3f;
     public Player player;
 
@@ -43,8 +43,9 @@ public class BackgroundSpawner : MonoBehaviour
         spawnModifier = startModifier - (4 / 600f);  
         spawnModifier = Mathf.Clamp(spawnModifier, 1, startModifier);
 
+        
         // Distance is increased by 1 each frame. Doctor appears after a set distance NOT score.
-        if(player.distance / doctorDistance == 1000)
+        if(Mathf.RoundToInt(player.distance) / doctorDistance == 50)
         {
             doctor = true;
             doctorDistance++;
@@ -67,7 +68,7 @@ public class BackgroundSpawner : MonoBehaviour
             }
             else
             {
-                    Instantiate(backObjectsPrefab, transform.position, Quaternion.identity, transform);
+                Instantiate(backObjectsPrefab, transform.position, Quaternion.identity, transform);
             }
 
             currentSpawnRate = Random.Range(minSpawnRate, maxSpawnRate);

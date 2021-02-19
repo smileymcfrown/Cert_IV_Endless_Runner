@@ -5,12 +5,12 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
 
-    public float minSpawnRate = 1f;
-    public float maxSpawnRate = 2f;
-    public float spawnModifier = 3f;
     public Player player;
-
     public GameObject obstaclePrefab;
+
+    private float minSpawnRate = 2f;
+    private float maxSpawnRate = 5f;
+    private float spawnModifier = 3f;
 
     private float currentSpawnRate = 0f;
     private float startModifier = 4f;
@@ -50,11 +50,11 @@ public class ObstacleSpawner : MonoBehaviour
          */
 
         // Set value of the modifier to the spawn rate using the current score / 1000
-        spawnModifier = startModifier - (player.GetScore() / 1000f);
+        // spawnModifier = startModifier - (player.GetScore() / 1000f);
 
         //  Mathf.Clamp(x, y, z):
         //    spawnMod will stay the same (x) as long as it's not <1 (y) or >startMod (z) 
-        spawnModifier = Mathf.Clamp(spawnModifier, 1.5f, startModifier);
+        // spawnModifier = Mathf.Clamp(spawnModifier, 2f, startModifier);
         
     }
 

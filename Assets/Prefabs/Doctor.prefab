@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4804888694405567779}
   - component: {fileID: 5824125119138071540}
-  - component: {fileID: -3060114407276605629}
   - component: {fileID: 5618276976409981100}
+  - component: {fileID: -8401949281445573604}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -84,23 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3060114407276605629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815857014742690110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdca4662a64edc24db83b02d7fbf2b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  sprites:
-  - {fileID: 21300000, guid: 1b44cac59f4f179499a576f34086dbd0, type: 3}
-  objectRenderer: {fileID: 5824125119138071540}
-  polygonCollider: {fileID: 0}
 --- !u!61 &5618276976409981100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -116,9 +99,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.24, y: 0.14999999, z: 0.25, w: 0.14}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3.6}
+    oldSize: {x: 2.51, y: 4.28}
     newSize: {x: 3, y: 3.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,3 +110,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8401949281445573604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815857014742690110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e4b5ff425fddf4c8ef970717606f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  backgroundSprites:
+  - {fileID: 21300000, guid: 1b44cac59f4f179499a576f34086dbd0, type: 3}
+  backgroundRenderer: {fileID: 5824125119138071540}
