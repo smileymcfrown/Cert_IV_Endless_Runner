@@ -45,7 +45,7 @@ public class BackgroundSpawner : MonoBehaviour
 
         
         // Distance is increased by 1 each frame. Doctor appears after a set distance NOT score.
-        if(Mathf.RoundToInt(player.distance) / doctorDistance == 50)
+        if(Mathf.RoundToInt(player.distance) / doctorDistance == 20)
         {
             doctor = true;
             doctorDistance++;

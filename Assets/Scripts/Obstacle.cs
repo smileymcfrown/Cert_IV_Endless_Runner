@@ -10,11 +10,12 @@ public class Obstacle : MonoBehaviour
     public SpriteRenderer obstacleRenderer;
     public PolygonCollider2D polygonCollider;
 
-    private float moveSpeed;
+    public float moveSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+ 
         player = GameObject.Find("Player").GetComponent<Player>(); // Find and access Player Script during runtime
         
         obstacleRenderer.sprite = sprites[Random.Range(0, sprites.Length)]; // Random Obstacle sprite
@@ -25,10 +26,9 @@ public class Obstacle : MonoBehaviour
             polygonCollider = GetComponent<PolygonCollider2D>();
         
         /* I believe the original code uses two for loops to check for multiple paths in a Polygon Collider
-         * and then to run through the array of paths creating the points for each path.
-         * Removing for loops as each sprite only has one path.*/
-
-        /*
+         * and then to run through the array of paths creating the points for each path. As below, but I'm
+         * removing the 'for' loops as each sprite only has one path....
+     
         for (int i = 0; i < polygonCollider.pathCount; i++) polygonCollider.SetPath(i, null);
         polygonCollider.pathCount = objectRenderer.sprite.GetPhysicsShapeCount();
 
@@ -39,6 +39,7 @@ public class Obstacle : MonoBehaviour
             sprite.GetPhysicsShape(i, path);
             polygonCollider.SetPath(i, path.ToArray());
         } 
+
         */
 
             // Clear old path, get sprite Physics Shape, update collider path to match sprite.
@@ -47,8 +48,16 @@ public class Obstacle : MonoBehaviour
             path.Clear();
             obstacleRenderer.sprite.GetPhysicsShape(0, path);
             polygonCollider.SetPath(0, path.ToArray());
+
+        moveSpeed = player.GetSpeed();
+
+
         // }
 
+
+
+        // Old code to change box collider for the Doctor that apparently also adjusts for changes in the
+        // scale of the sprite. Scale is (1,1,1) so we don't need it. Code simplified and moved to BackgroundObjects.cs
 
         /*else if(gameObject.name == "Doctor(Clone)")
         {
@@ -70,7 +79,7 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveSpeed = player.GetSpeed();
+        // moveSpeed = player.GetSpeed();
         transform.position -= transform.right * moveSpeed * Time.deltaTime;
     }
 }

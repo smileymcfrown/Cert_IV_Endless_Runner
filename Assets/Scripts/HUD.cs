@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
         // I wanted to have the high score update before the player restarts the game so that
         // they can bask in their glory before trying again. So, I've put it all in here.
         
-        if(_active == true)
+        if (_active == true)
         {
             int highScore = PlayerPrefs.GetInt("High Score", 0);
             int currentScore = player.GetScore();
@@ -43,6 +43,13 @@ public class HUD : MonoBehaviour
         }
 
         restartButton.SetActive(_active);
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Time.timeScale = 1;
+        //    player.Restart();
+        //}
+
     }
 
     // Start is called before the first frame update
